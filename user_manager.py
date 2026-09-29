@@ -1,5 +1,6 @@
 import subprocess
 import re
+from logger import log_action
 
 
 def list_users():
@@ -41,6 +42,7 @@ def create_user():
         )
 
         print(f"User '{username}' created successfully.")
+        log_action(f"Created user '{username}'")
 
     except subprocess.CalledProcessError:
         print(f"Failed to create user '{username}'.")
@@ -76,6 +78,7 @@ def delete_user():
         )
 
         print(f"User '{username}' deleted successfully.")
+        log_action(f"Deleted user '{username}'")
 
     except subprocess.CalledProcessError:
         print(f"Failed to delete user '{username}'.")

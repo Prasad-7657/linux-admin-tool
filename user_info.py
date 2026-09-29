@@ -25,7 +25,6 @@ def get_user_info():
     print(f"\n========== USER INFORMATION: {username} ==========")
 
     try:
-        # UID, GID and groups
         result = subprocess.run(
             ["id", username],
             capture_output=True,
@@ -36,7 +35,6 @@ def get_user_info():
         print("\nIdentity:")
         print(result.stdout.strip())
 
-        # Detailed passwd information
         result = subprocess.run(
             ["getent", "passwd", username],
             capture_output=True,
@@ -55,7 +53,6 @@ def get_user_info():
             print(f"Home Directory : {passwd_data[5]}")
             print(f"Login Shell    : {passwd_data[6]}")
 
-        # Group membership
         result = subprocess.run(
             ["groups", username],
             capture_output=True,

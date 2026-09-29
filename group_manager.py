@@ -1,5 +1,6 @@
 import subprocess
 import re
+from logger import log_action
 
 
 def group_exists(group_name):
@@ -52,6 +53,7 @@ def create_group():
         )
 
         print(f"Group '{group_name}' created successfully.")
+        log_action(f"Created group '{group_name}'")
 
     except subprocess.CalledProcessError:
         print(f"Failed to create group '{group_name}'.")
@@ -96,6 +98,7 @@ def delete_group():
         )
 
         print(f"Group '{group_name}' deleted successfully.")
+        log_action(f"Deleted group '{group_name}'")
 
     except subprocess.CalledProcessError:
         print(f"Failed to delete group '{group_name}'.")
@@ -130,6 +133,10 @@ def add_user_to_group():
         print(
             f"User '{username}' added to group "
             f"'{group_name}' successfully."
+        )
+
+        log_action(
+            f"Added user '{username}' to group '{group_name}'"
         )
 
     except subprocess.CalledProcessError:

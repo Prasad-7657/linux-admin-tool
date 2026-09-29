@@ -1,5 +1,6 @@
 import os
 import stat
+from logger import log_action
 
 
 def get_permission_string(file_path):
@@ -64,6 +65,7 @@ def check_file_permissions():
     if permissions:
         explain_permissions(permissions)
 
+
 def change_file_permissions():
     file_path = input("Enter file or directory path: ").strip()
 
@@ -89,7 +91,7 @@ def change_file_permissions():
         print("Each digit must be between 0 and 7.")
         return
 
-    print(f"\nYou are about to change:")
+    print("\nYou are about to change:")
     print(f"Path        : {file_path}")
     print(f"Permissions : {permissions}")
 
@@ -105,6 +107,10 @@ def change_file_permissions():
         print(
             f"Permissions for '{file_path}' "
             f"changed to {permissions}."
+        )
+
+        log_action(
+            f"Changed permissions of '{file_path}' to {permissions}"
         )
 
     except PermissionError:
