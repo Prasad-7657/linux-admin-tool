@@ -1,3 +1,6 @@
+from user_manager import list_users
+
+
 def show_menu():
     print("\n================================")
     print("        LINUX ADMIN TOOL")
@@ -23,4 +26,8 @@ while True:
         print("Exiting...")
         break
 
-    print(f"You selected option {choice}")
+    elif choice == "1":
+        list_users()
+
+    else:
+        print(f"You selected option {choice}")
