@@ -6,6 +6,8 @@ from group_manager import (
     add_user_to_group
 )
 
+from user_info import get_user_info
+from permission_manager import check_file_permissions
 
 def show_menu():
     print("\n================================")
@@ -50,9 +52,15 @@ while True:
 
     elif choice == "6":
         delete_group()
-        
+
     elif choice == "7":
         add_user_to_group()
+
+    elif choice == "8":
+        get_user_info()    
+
+    elif choice == "9":
+        check_file_permissions()
 
     else:
         print("That option is not implemented yet.")

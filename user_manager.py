@@ -25,13 +25,11 @@ def username_exists(username):
 def create_user():
     username = input("Enter username to create: ").strip()
 
-    # Check username format
     if not re.fullmatch(r"[a-z_][a-z0-9_-]*[$]?", username):
         print("Invalid username.")
         print("Use lowercase letters, numbers, '_' or '-'.")
         return
 
-    # Check if user already exists
     if username_exists(username):
         print(f"User '{username}' already exists.")
         return
@@ -46,3 +44,38 @@ def create_user():
 
     except subprocess.CalledProcessError:
         print(f"Failed to create user '{username}'.")
+
+
+def delete_user():
+    username = input("Enter username to delete: ").strip()
+
+    if not username:
+        print("Username cannot be empty.")
+        return
+
+    if not username_exists(username):
+        print(f"User '{username}' does not exist.")
+        return
+
+    if username == "root":
+        print("You cannot delete the root user.")
+        return
+
+    confirmation = input(
+        f"Are you sure you want to delete '{username}'? (yes/no): "
+    ).strip().lower()
+
+    if confirmation != "yes":
+        print("User deletion cancelled.")
+        return
+
+    try:
+        subprocess.run(
+            ["sudo", "userdel", username],
+            check=True
+        )
+
+        print(f"User '{username}' deleted successfully.")
+
+    except subprocess.CalledProcessError:
+        print(f"Failed to delete user '{username}'.")
