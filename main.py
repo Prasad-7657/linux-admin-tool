@@ -1,4 +1,4 @@
-from user_manager import list_users
+from user_manager import list_users, create_user
 
 
 def show_menu():
@@ -28,6 +28,9 @@ while True:
 
     elif choice == "1":
         list_users()
+
+    elif choice == "2":
+        create_user()
 
     else:
         print(f"You selected option {choice}")
