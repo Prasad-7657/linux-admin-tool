@@ -7,7 +7,11 @@ from group_manager import (
 )
 
 from user_info import get_user_info
-from permission_manager import check_file_permissions
+
+from permission_manager import (
+    check_file_permissions,
+    change_file_permissions
+)
 
 def show_menu():
     print("\n================================")
@@ -61,6 +65,9 @@ while True:
 
     elif choice == "9":
         check_file_permissions()
+
+    elif choice == "10":
+       change_file_permissions()
 
     else:
         print("That option is not implemented yet.")
